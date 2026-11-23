@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rivalalexa102-png.github.io/Rival-Project-2/sitemap.xml
