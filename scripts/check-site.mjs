@@ -6,12 +6,18 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => readFileSync(path.join(root, file), "utf8");
 const html = read("index.html");
-const css = read("styles.css");
+const cssFiles = [
+  "styles.css",
+  "assets/css/main.css",
+  "assets/vendor/bootstrap-icons/bootstrap-icons.min.css",
+];
 const script = read("script.js");
 
 assert.match(html, /<html lang="en">/, "The page should declare its language.");
 assert.match(html, /<title>[^<]+<\/title>/, "The page should have a title.");
 assert.match(html, /Kabankalan Catholic College/, "The page should identify the college.");
+assert.match(html, /assets\/vendor\/bootstrap\/css\/bootstrap\.min\.css/, "The page should load Bootstrap.");
+assert.match(html, /BootstrapMade/, "The supplied template credit should remain visible.");
 assert.match(html, /id="home"/, "The page should include the home section.");
 assert.match(html, /aria-expanded="false"/, "The mobile menu should expose its collapsed state.");
 assert.match(script, /event\.key === "Escape"/, "The mobile menu should close with Escape.");
@@ -31,10 +37,16 @@ for (const match of html.matchAll(/<(?:img|link|script)\b[^>]*>/g)) {
   assert.ok(existsSync(path.join(root, localPath)), `The local asset ${localPath} should exist.`);
 }
 
-for (const match of css.matchAll(/url\((["']?)(.*?)\1\)/g)) {
-  const reference = match[2];
-  if (/^(?:[a-z]+:|\/\/|data:|#)/i.test(reference)) continue;
-  assert.ok(existsSync(path.join(root, reference)), `The local stylesheet asset ${reference} should exist.`);
+for (const cssFile of cssFiles) {
+  const css = read(cssFile);
+  for (const match of css.matchAll(/url\((["']?)(.*?)\1\)/g)) {
+    const reference = match[2];
+    if (/^(?:[a-z]+:|\/\/|data:|#)/i.test(reference)) continue;
+    assert.ok(
+      existsSync(path.resolve(root, path.dirname(cssFile), reference)),
+      `The local stylesheet asset ${reference} in ${cssFile} should exist.`,
+    );
+  }
 }
 
 console.log(`Site check passed: ${anchors.length} in-page links and local assets verified.`);

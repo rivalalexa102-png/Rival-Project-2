@@ -2,6 +2,8 @@
 
 A responsive, static landing page for Kabankalan Catholic College, Inc. The site uses plain HTML, CSS, and JavaScript; no package installation or build step is required.
 
+The layout is adapted from the provided Mentor Bootstrap education template. Its BootstrapMade attribution is retained in the page footer.
+
 ## Preview locally
 
 Open `index.html` in a browser, or start a local web server from the project directory:
@@ -18,6 +20,8 @@ Then visit `http://localhost:8000`.
 - `styles.css` — visual design and responsive layouts
 - `script.js` — mobile navigation and current-year footer
 - `assets/` — site identity artwork
+- `assets/vendor/` — Bootstrap and Bootstrap Icons from the supplied template
+- `assets/css/main.css` — the supplied Mentor theme, customized by `styles.css`
 
 The page uses externally hosted Google Fonts and Unsplash photographs.
 
