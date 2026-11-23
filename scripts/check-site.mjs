@@ -40,7 +40,7 @@ for (const match of html.matchAll(/<(?:img|link|script)\b[^>]*>/g)) {
 for (const cssFile of cssFiles) {
   const css = read(cssFile);
   for (const match of css.matchAll(/url\((["']?)(.*?)\1\)/g)) {
-    const reference = match[2];
+    const reference = match[2].split(/[?#]/, 1)[0];
     if (/^(?:[a-z]+:|\/\/|data:|#)/i.test(reference)) continue;
     assert.ok(
       existsSync(path.resolve(root, path.dirname(cssFile), reference)),
