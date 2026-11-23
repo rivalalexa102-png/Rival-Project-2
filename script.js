@@ -14,4 +14,19 @@ primaryNav.addEventListener("click", (event) => {
   }
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+    menuToggle.setAttribute("aria-expanded", "false");
+    primaryNav.classList.remove("is-open");
+    menuToggle.focus();
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (!primaryNav.contains(event.target) && !menuToggle.contains(event.target)) {
+    menuToggle.setAttribute("aria-expanded", "false");
+    primaryNav.classList.remove("is-open");
+  }
+});
+
 document.querySelector("#current-year").textContent = new Date().getFullYear();
