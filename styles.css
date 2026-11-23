@@ -121,7 +121,13 @@ h1 em, h2 em { color: var(--gold); font-weight: 600; }
 .brand-footer .brand-name { color: #fff; font-size: 13px; }
 .brand-footer .brand-name small { color: #c3b4a9; }
 .footer-inner > p, .copyright { margin: 0; color: rgba(255,255,255,.62); font-size: 9px; }
-
+.not-found-page { min-height: 100vh; display: grid; place-items: center; background: var(--cream); }
+.not-found { width: min(520px, calc(100% - 40px)); padding: 48px; background: #fff; }
+.not-found .brand { margin-bottom: 65px; }
+.not-found .eyebrow { margin-bottom: 15px; }
+.not-found h1 { margin-bottom: 16px; color: var(--ink); font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: 1.1; }
+.not-found h1 em { color: var(--maroon); }
+.not-found-copy { margin-bottom: 22px; color: var(--muted); font-size: 12px; line-height: 1.8; }
 @media (max-width: 900px) {
   .container { width: min(100% - 44px, 720px); }
   .primary-nav { gap: 20px; }
@@ -171,6 +177,9 @@ h1 em, h2 em { color: var(--gold); font-weight: 600; }
   .contact h2 { font-size: 37px; }
   .contact-inner > p:not(.eyebrow) { max-width: 300px; }
   .footer-inner { min-height: 0; align-items: flex-start; flex-direction: column; gap: 13px; padding-top: 25px; padding-bottom: 25px; }
+  .not-found { padding: 35px 27px; }
+  .not-found .brand { margin-bottom: 48px; }
+  .not-found h1 { font-size: 43px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
